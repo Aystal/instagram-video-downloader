@@ -8,7 +8,8 @@ app = Flask(__name__)
 HTML_TEMPLATE = '''
 <!doctype html>
 <html>
- <style>
+ <head>
+  <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f3f0f5;
@@ -93,6 +94,7 @@ HTML_TEMPLATE = '''
       }
     }
 </style>
+</head>
 <body>
 <div class="bmi-container">
 <h1>Instagram Video Downloader</h1>
