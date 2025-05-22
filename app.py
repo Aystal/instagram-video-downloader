@@ -7,16 +7,18 @@ app = Flask(__name__)
 
 HTML_TEMPLATE = '''
 <!doctype html>
-<html>
- <head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title></title>
   <style>
     body {
+      display: flex;
+      justify-content: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f3f0f5;
       margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       min-height: 100vh;
     }
 
@@ -26,7 +28,8 @@ HTML_TEMPLATE = '''
       border-radius: 1.5rem;
       box-shadow: 0 10px 25px rgba(146, 57, 206, 0.2);
       width: 100%;
-      max-width: 75%;
+      max-width: 85%;
+      margin: auto;
     }
 
     h1 {
@@ -36,10 +39,12 @@ HTML_TEMPLATE = '''
     }
 
     .input-group {
+      
       display: flex;
       flex-direction: column;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      
     }
 
     label {
@@ -64,6 +69,8 @@ HTML_TEMPLATE = '''
       cursor: pointer;
       font-size: 1rem;
       transition: background 0.3s ease;
+      width: 85%;
+      margin: auto;
     }
 
     button:hover {
@@ -93,29 +100,31 @@ HTML_TEMPLATE = '''
         padding: 1.25rem;
       }
     }
-</style>
+  </style>
 </head>
 <body>
-<div class="bmi-container">
-<h1>Instagram Video Downloader</h1>
-  <div class="input-group">
+  <div class="bmi-container">
+  <h1>Instagram Video Downloader</h1>
   <form method="POST">
-    <input type="text" name="url" id="ig-url" placeholder="Enter Instagram video URL" style="width: 80%; padding: 8px;" required />
-    <button type="submit">Get Video</button>
+    <div class="input-group">
+      
+      <label for="ig-url">Enter Instagram video URL:</label>
+      <input type="text" name="url" id="ig-url" placeholder="https://www.instagram.com/reel/..." required />
+      <button type="submit">Get Video</button>
     
-  </form>
-  {% if video_path %}
-    <div class="result" id="result">
-      <h3>Download link:</h3>
-      <a href="{{ url_for('download_file', filename=video_filename) }}"><button type="button">Click Me!</button></a>
+      </form>
+      {% if video_path %}
+      <div class="result" id="result">
+        <h3>Download link:</h3>
+        <a href="{{ url_for('download_file', filename=video_filename) }}"><button type="button">Click Me!</button></a>
+      </div>
+      {% elif error %}
+      <div class="result" id="result">
+        <p style="color:red;">{{ error }}</p>
+      </div>
+      {% endif %}
     </div>
-  {% elif error %}
-    <div class="result" id="result">
-      <p style="color:red;">{{ error }}</p>
-    </div>
-  {% endif %}
   </div>
-</div>
 </body>
 </html>
 '''
