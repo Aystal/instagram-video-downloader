@@ -69,7 +69,7 @@ HTML_TEMPLATE = '''
       cursor: pointer;
       font-size: 1rem;
       transition: background 0.3s ease;
-      width: 85%;
+      width: 100%;
       margin: auto;
     }
 
