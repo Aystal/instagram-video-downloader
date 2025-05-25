@@ -13,80 +13,78 @@ HTML_TEMPLATE = '''
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title></title>
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f3f0f5;
+     #body_div {
       margin: 0;
-      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f8ff;
+      color: #333;
     }
-
-    .bmi-container {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 10px 25px rgba(146, 57, 206, 0.2);
-      width: 100%;
-      max-width: 85%;
-      margin: auto;
-    }
-
-    h1 {
-      color: #9239CE;
+    #tool_header {
+      background: linear-gradient(90deg, #9239CE, #FF12C4);
+      color: white;
       text-align: center;
+      padding: 2rem 1rem;
       margin-bottom: 1rem;
+      border-radius: 2rem;
     }
-
-    .input-group {
-      
+    .flex-container {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      
-    }
-
-    label {
-      font-weight: bold;
-      color: #9239CE;
-    }
-
-    input[type="text"] {
-      padding: 0.75rem;
-      border: 2px solid #9239CE;
-      border-radius: 1rem;
-      outline: none;
-      font-size: 1rem;
-    }
-
-    button {
-      background: #FF12C4;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1.25rem;
-      border-radius: 1rem;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-      width: 100%;
-      margin: auto;
-    }
-
-    button:hover {
-      background: #e010b5;
-    }
-
-    .result {
-      margin-top: 1.5rem;
+      max-width: 600px;
+      margin: 2rem auto;
       padding: 1rem;
+      background: white;
       border-radius: 1rem;
-      background-color: #f9f4fc;
-      border: 1px solid #9239CE;
-      color: #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 90%;
+      padding: 0.75rem;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    #label1{
+      color: #9239CE;
+      font: sans-serif;
+      margin-bottom: 0.5rem;
+    }
+    button {
+      background: #9239CE;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.input-group input,
+.input-group button {
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+    button:hover {
+      background: #7c2bbd;
+    }
+    #result {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
       text-align: center;
     }
-
+    #tool_footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1rem;
+      color: #888;
+    }
     .result span {
       display: block;
       margin-top: 0.5rem;
@@ -102,20 +100,23 @@ HTML_TEMPLATE = '''
     }
   </style>
 </head>
-<body>
-  <div class="bmi-container">
-  <h1>Instagram Video Downloader</h1>
-  <form method="POST">
-    <div class="input-group">
-      
-      <label for="ig-url">Enter Instagram video URL:</label>
+<div id="body_div">
+   <div class="flex-container">
+    <header id="tool_header">
+      <h1>Free IG video Downloader</h1>
+      <p>no se que poner jeje</p>
+    </header>
+    <form method="POST">
+    
+      <div class="input-group">
+      <label for="ig-url" id="label1">Enter Instagram video URL:</label>
       <input type="text" name="url" id="ig-url" placeholder="https://www.instagram.com/reel/..." required />
       <button type="submit">Get Video</button>
-    
+    </div>
       </form>
       {% if video_path %}
       <div class="result" id="result">
-        <h3>Download link:</h3>
+        <h3 id="label1">Download link:</h3>
         <a href="{{ url_for('download_file', filename=video_filename) }}"><button type="button">Click Me!</button></a>
       </div>
       {% elif error %}
@@ -123,9 +124,12 @@ HTML_TEMPLATE = '''
         <p style="color:red;">{{ error }}</p>
       </div>
       {% endif %}
+    
     </div>
-  </div>
-</body>
+  <footer id="tool_footer">
+    &copy; 2025 BMI Tools | <a href="#">Privacy</a> | <a href="#">Contact</a>
+  </footer>
+</div>
 </html>
 '''
 
